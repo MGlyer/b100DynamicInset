@@ -180,7 +180,7 @@ Link out to a separate page (for the app only). This will make it behave like a 
 1. Generate a standalone URL using the template below by replacing `URL_GOES_HERE` with your inset link.
   ```https://graphics.wsj.com/dynamic-inset-iframer/?url=URL_GOES_HERE```
 2. Create a promo image and upload it to the Whopper. It should be G or M size (G is OK, but M will look sharper), with the headline text on the image (because the app doesn't show a strap). The headline text should not be placed at the lower left corner, as the app overlays an icon in that position.
-3. Create a new settings file using the [settings file tool](http://cropper.dowjones.net/dev/settings_file_tool/). If you don't add a promo image to the settings file, it will show up in the app as a mysterious gray box. The slug should be the story slug with a date, e.g. `fed-jobs-20181207` 
+3. Create a new settings file using the [settings file tool](http://int.production.wsj-newsroom-tools.ohio.dj01.onservo.com/settings-file). If you don't add a promo image to the settings file, it will show up in the app as a mysterious gray box. The slug should be the story slug with a date, e.g. `fed-jobs-20181207` 
 4. In Methode, add the settings file below the inset.
     - Check "Mobile app" but uncheck "Web".
 

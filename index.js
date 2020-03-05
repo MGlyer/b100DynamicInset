@@ -163,9 +163,7 @@ if (argv.buildFallback) {
     shell: true
   });
   server.stdout.on('data', data => {
-    if (
-      data.toString() === 'Starting up http-server, serving ./\nAvailable on:\n'
-    ) {
+    if (/Starting/gi.test(data.toString())) {
       generateFallback(argv.production, '3001').then(() => {
         server.kill();
         console.log(colors.green('Fallback image preparation complete.'));

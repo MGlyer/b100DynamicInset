@@ -1,12 +1,10 @@
-const puppeteer = require('puppeteer');
-
 //https://github.com/GoogleChrome/puppeteer/issues/306#issuecomment-322929342
 
 async function screenshotDOMElement(imagePath, page, selector, padding = 0) {
   const rect = await page.evaluate(selector => {
     const element = document.querySelector(selector);
-    const {x, y, width, height} = element.getBoundingClientRect();
-    return {left: x, top: y, width, height, id: element.id};
+    const { x, y, width, height } = element.getBoundingClientRect();
+    return { left: x, top: y, width, height, id: element.id };
   }, selector);
 
   return await page.screenshot({

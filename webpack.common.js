@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    app: ['./src/index.js'],
+    app: ['./src/index.js']
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -30,9 +30,11 @@ module.exports = {
       },
       {
         test: /\.[ct]sv$/,
-        use: [{
-          loader: "dsv-loader"
-        }]
+        use: [
+          {
+            loader: 'dsv-loader'
+          }
+        ]
       }
     ]
   },

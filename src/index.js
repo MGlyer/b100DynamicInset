@@ -5,6 +5,9 @@ import dataMap from '../utils/dataMap';
 
 (() => {
   const element = document.getElementById(`${slug}-container`);
+  element.style.height = 'fit-content';
+
+  // FILL THE FORM
   dataMap.forEach((item) => {
     const target = document.getElementById(item.id);
     const targetLabel = document.createElement("label");
@@ -17,9 +20,6 @@ import dataMap from '../utils/dataMap';
     target.appendChild(targetField);
   })
 
-  // element.innerHTML = 'Inset contents go here. Maybe a chart, maybe something else!';
-  // element.style.background = 'lightgray';
-  element.style.height = 'fit-content';
 
 
   // IDENTITY BUTTONS
@@ -29,18 +29,24 @@ import dataMap from '../utils/dataMap';
     const targetBtn = evt.target.id === 'yes' ? yesButton : noButton;
     const otherBtn = evt.target.id === 'no' ? yesButton : noButton;
 
-    let targetClasses = [...targetBtn.classList].slice(0, 2);
-    targetClasses.push('active')
-    let otherClasses = [...otherBtn.classList].slice(0, 2);
-    otherClasses.push('inactive')
-    targetBtn.classList = targetClasses.join(' ');
-    otherBtn.classList = otherClasses.join(' ');
+    targetBtn.classList.remove('inactive');
+    targetBtn.classList.add('active');
+    otherBtn.classList.remove('active');
+    otherBtn.classList.add('inactive');
 
     targetBtn.removeEventListener('click', handleIdentityToggle);
     otherBtn.addEventListener('click', handleIdentityToggle);
   }
 
   noButton.addEventListener('click', handleIdentityToggle)
+
+  // ERROR MESSAGE
+  const errMsg = element.querySelector('.error-container');
+  const showError = () => {
+    errMsg.classList.remove('inactive')
+  }
+
+  element.querySelector('#submit-button').addEventListener('click', showError)
 
 
   // VALIDATION LOGIC

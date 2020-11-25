@@ -13,3 +13,16 @@
 .inset-source{
   @extend .chart-source;
 }
+
+.input-container {
+  display: flex;
+  width: 100%;
+}
+
+.input-label {
+  width: 190px;
+}
+
+input {
+  width: 420px;
+}

@@ -1,8 +1,29 @@
 <div class="wsjgraphics">
   <div class="inset-hed">{{ headline }}</div>
   <div class="inset-dek">{{ description }}</div>
-  <div id="{{{ slug }}}-container"></div>
-  <div class="inset-source">Source: TK TK</div>
+  <div id="{{{ slug }}}-container">
+    <form onsubmit="event.preventDefault()">
+      <p>* Required</p>
+      <div id="nom-name" class="input-container"></div>
+      <div id="nom-company-job-title" class="input-container"></div>
+      <div id="nom-email" class="input-container"></div>
+      <div id="nom-phone" class="input-container"></div>
+      <div id="nom-education" class="input-container"></div>
+      <div id="nom-description" class="input-container"></div>
+      <div id="nom-achievements" class="input-container"></div>
+      <div id="nom-influence" class="input-container"></div>
+      <div id="nom-mentor" class="input-container"></div>
+      <div id="nom-prior" class="input-container"></div>
+      <div id="nom-testimonials" class="input-container"></div>
+      <div id="nom-activities" class="input-container"></div>
+      <div class="divider"></div>
+      <div id="submitter-email" class="input-container"></div>
+      <div id="submitter-phone" class="input-container"></div>
+      <div id="submitter-details" class="input-container"></div>
+      <div id="submitter-relationship" class="input-container"></div>
+    </form>
+  </div>
+  <!-- <div class="inset-source">Source: TK TK</div> -->
 </div>
 <script>
   loadCSS('{{{ cssUrl }}}');

@@ -12,6 +12,7 @@ import dataMap from '../utils/dataMap';
 
     targetLabel.innerHTML = item.text;
     targetLabel.className = 'input-label'
+    targetField.className = `size-${item.boxSize}`
     target.appendChild(targetLabel);
     target.appendChild(targetField);
   })
@@ -20,6 +21,29 @@ import dataMap from '../utils/dataMap';
   // element.style.background = 'lightgray';
   element.style.height = 'fit-content';
 
+
+  // IDENTITY BUTTONS
+  const yesButton = element.querySelector('#yes');
+  const noButton = element.querySelector('#no');
+  const handleIdentityToggle = (evt) => {
+    const targetBtn = evt.target.id === 'yes' ? yesButton : noButton;
+    const otherBtn = evt.target.id === 'no' ? yesButton : noButton;
+
+    let targetClasses = [...targetBtn.classList].slice(0, 2);
+    targetClasses.push('active')
+    let otherClasses = [...otherBtn.classList].slice(0, 2);
+    otherClasses.push('inactive')
+    targetBtn.classList = targetClasses.join(' ');
+    otherBtn.classList = otherClasses.join(' ');
+
+    targetBtn.removeEventListener('click', handleIdentityToggle);
+    otherBtn.addEventListener('click', handleIdentityToggle);
+  }
+
+  noButton.addEventListener('click', handleIdentityToggle)
+
+
+  // VALIDATION LOGIC
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -36,8 +60,6 @@ import dataMap from '../utils/dataMap';
   }
   
   const sendFeedback = (evt) => {
-    const rating = [...evt.target.classList].includes('positive') ? 1 : 0;
-    const user_type = window.utag ? utag.data.user_type : utag_data.user_type;
     const payload = {
       "email_4E75E544-ABF9-4FDC-8A15-BE4806ADC894": "Nominator's email RESPONSE VAL",
       "name_98F5D95D-8FBE-4A79-9A9F-9A0702E07078": "Nominator's name RESPONSE VAL",
@@ -57,7 +79,7 @@ import dataMap from '../utils/dataMap';
       "text_area_A2118387-7F86-4FBB-821D-6953F337C1C1": "Nominee's prior jobs or positions RESPONSE VAL",
       "text_area_7130C671-C18A-4CA5-A833-78DE06C9747D": "Testimonials, if any, from mentors, bosses, clients or peers RESPONSE VAL"
     }
-    const formUrl = 'https://10nk3u5ov4.execute-api.us-east-1.amazonaws.com/prod/v1/feedback/cd48f026-346a-4ee6-b934-e273620ae07d';
+    const formUrl = 'https://10nk3u5ov4.execute-api.us-east-1.amazonaws.com/prod/v1/feedback/b60b15be-9468-4880-a6ed-ab79ca63c1a6';
 
     fetch(formUrl, {
       method: 'POST',

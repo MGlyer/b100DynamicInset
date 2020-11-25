@@ -14,15 +14,73 @@
   @extend .chart-source;
 }
 
+.b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container {
+  width: 640px;
+}
+
 .input-container {
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .input-label {
   width: 190px;
+  text-align: right;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(33, 50, 51, 0.8);
+  border-radius: 2px;
 }
 
 input {
   width: 420px;
+  margin-left: 10px;
+  border: 1px solid rgba(33, 50, 51, 0.8);
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+input.size-small {
+  height: 40px;
+}
+
+input.size-large {
+  height: 150px;
+}
+
+.divider {
+  border-bottom: 1px solid rgba(165, 165, 165, 0.3);
+  margin-bottom: 20px;
+}
+
+.identity-button-container {
+  margin-left: 10px;
+  display: inline;
+}
+
+.identity-button {
+  width: 90px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 24px;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  color: rgba(33, 50, 51, 0.8);
+  border: 1px solid rgba(165, 165, 165, 0.3);
+}
+
+.yes-button.active {
+  background-color: #009788;
+  color: white;
+}
+
+.no-button {
+  margin-left: -4px;
+}
+
+.no-button.active {
+  background-color: #D93D12;
+  color: white;
 }

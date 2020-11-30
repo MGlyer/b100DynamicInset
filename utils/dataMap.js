@@ -1,21 +1,21 @@
 module.exports = [
   {
     id: 'nom-name',
-    text: 'Name of Nominee*',
+    text: 'Name of Nominee *',
     slug: 'text_input_136F01AF-6B86-45C9-866B-2395BECA51A5', 
     boxSize: 'small',
     required: true
   },
   {
     id: 'nom-company-job-title',
-    text: 'Nominee\'s company and job title*',
+    text: 'Nominee\'s company and job title *',
     slug: 'text_input_E68A6D22-CB04-4820-9051-46DA2F00C525', 
     boxSize: 'small',
     required: true
   },
   {
     id: 'nom-email',
-    text: 'Nominee\'s Email*',
+    text: 'Nominee\'s Email *',
     slug: 'email_B093DF61-FA5A-4EB5-B1DF-9881BDD81108', 
     boxSize: 'small',
     type: 'email',
@@ -23,7 +23,7 @@ module.exports = [
   },
   {
     id: 'nom-phone',
-    text: `Nominee's Phone*`,
+    text: `Nominee's Phone *`,
     slug: 'contact_93B4DCAA-86DA-4C0C-B144-70423C3DA0F2', 
     boxSize: 'small',
     type: 'tel',
@@ -34,7 +34,7 @@ module.exports = [
     text: `Nominee's Education`,
     slug: 'text_area_564A8B4C-2818-4D2B-9E0B-ECA2CEED5EA1',
     boxSize: 'small',
-    forceError: true
+    // forceError: true
   },
   {
     id: 'nom-description',

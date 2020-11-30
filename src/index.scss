@@ -2,6 +2,15 @@
 // go here for a guide to wsjgraphics.css
 // https://github.dowjones.net/pages/bentleye/wsjgraphics.css/
 
+@font-face {
+  font-family: Aileron;
+  src: url("https://www.barrons.com/fonts/woffs/aileron/Aileron-Regular.woff2") format("woff2"),
+      url("https://www.barrons.com/fonts/woffs/aileron/Aileron-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+
 .inset-hed {
   @extend .chart-headline;
 }
@@ -16,6 +25,7 @@
 
 .b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container {
   width: 640px;
+  font-family: Aileron !important;
 }
 
 .input-container {
@@ -125,4 +135,32 @@ textarea.error {
 
 .error-container.inactive {
   display: none;
+}
+
+@media screen and (max-width: 640px) {
+  .b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container {
+    width: 100%;
+  }
+
+  .input-container {
+    display: block;
+  }
+
+  .input-label {
+    width: 100%;
+  }
+
+  input,
+  textarea,
+  .identity-button-container  {
+    width: 100%;
+    margin-left: unset;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .identity-button {
+    width: 50%;
+  }
+
 }

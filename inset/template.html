@@ -1,6 +1,6 @@
 <div class="wsjgraphics">
-  <div class="inset-hed">{{ headline }}</div>
-  <div class="inset-dek">{{ description }}</div>
+  <!-- <div class="inset-hed">{{ headline }}</div>
+  <div class="inset-dek">{{ description }}</div> -->
   <div id="{{{ slug }}}-container" class="b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container">
     <form onsubmit="event.preventDefault()">
       <p>* Required</p>
@@ -24,8 +24,8 @@
       <div id="submitter-identity" class="input-container button-container">
         <label class='input-label'>Do you want your identity as a nominator revealed to the nominee?</label>
         <div class="identity-button-container">
-          <button id="yes" class="identity-button yes-button active">Yes</button>
-          <button id="no" class="identity-button no-button inactive">No</button>
+          <button id="yes" data-response="Yes" class="identity-button yes-button active">Yes</button>
+          <button id="no" data-response="No" class="identity-button no-button inactive">No</button>
         </div>
       </div>
       <div class="error-container inactive">

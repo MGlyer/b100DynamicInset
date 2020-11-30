@@ -28,6 +28,12 @@
   font-family: Aileron !important;
 }
 
+.b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container p {
+  font-size: 14px;
+  line-height: 18px;
+  font-family: Aileron !important;
+}
+
 .input-container {
   display: flex;
   width: 100%;
@@ -59,6 +65,10 @@ input.size-small {
 
 textarea.size-large {
   height: 150px;
+}
+
+.input-label.error {
+  color: #D93D12;
 }
 
 input.error,

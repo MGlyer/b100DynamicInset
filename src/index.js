@@ -52,8 +52,8 @@ import dataMap from '../utils/dataMap';
   const putErrorOnField = field => field.classList.add('error');
   const removeErrorOnField = field => field.classList.remove('error');
 
-  const labelError = () => {
-    document.querySelectorAll('[data-required-label=true]').forEach(putErrorOnField)
+  const labelError = (errFields) => {
+    errFields.forEach(field => putErrorOnField(field.previousSibling))
   }
 
   const showErrorMsg = () => {
@@ -86,7 +86,7 @@ import dataMap from '../utils/dataMap';
     hideErrors();
     element.querySelector('#yes').classList.add('active');
     element.querySelector('#no').classList.remove('active');
-    document.querySelectorAll('[data-response=true').forEach(item => item.value = '');
+    document.querySelectorAll('[data-response=true]').forEach(item => item.value = '');
   }
   
   const sendFeedback = () => {
@@ -126,7 +126,7 @@ import dataMap from '../utils/dataMap';
     const requiredFieldsFilled = requiredFields.length === 0;
     if (!requiredFieldsFilled) {
       showErrorMsg();
-      labelError();
+      labelError(requiredFields);
       requiredFields.forEach(putErrorOnField)
       return
     }

@@ -39,10 +39,8 @@ import dataMap from '../utils/dataMap';
     const targetBtn = evt.target.id === 'yes' ? yesButton : noButton;
     const otherBtn = evt.target.id === 'no' ? yesButton : noButton;
 
-    targetBtn.classList.remove('inactive');
     targetBtn.classList.add('active');
     otherBtn.classList.remove('active');
-    otherBtn.classList.add('inactive');
 
     targetBtn.removeEventListener('click', handleIdentityToggle);
     otherBtn.addEventListener('click', handleIdentityToggle);
@@ -74,6 +72,22 @@ import dataMap from '../utils/dataMap';
 
 
   // SUBMISSION LOGIC
+
+  const handleSubmitButton = () => {
+    const submitButton = document.querySelector('#submit-button');
+    submitButton.innerHTML = 'Thank You!';
+    setTimeout(() => {
+      submitButton.innerHTML = 'Submit'
+    }, 3000)
+  }
+
+  const resetForm = () => {
+    handleSubmitButton();
+    hideErrors();
+    element.querySelector('#yes').classList.add('active');
+    element.querySelector('#no').classList.remove('active');
+    document.querySelectorAll('[data-response=true').forEach(item => item.value = '');
+  }
   
   const sendFeedback = () => {
     const responses = element.querySelectorAll('[data-response=true]');
@@ -97,9 +111,7 @@ import dataMap from '../utils/dataMap';
     }).then(response => response.json())
     .then(resJson => {
       if(resJson.id) {
-        hideErrors();
-        const submitButton = document.querySelector('#submit-button');
-        submitButton.innerHTML = 'Thank You!';
+        resetForm();
       }
     })
   };

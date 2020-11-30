@@ -15,7 +15,7 @@ import dataMap from '../utils/dataMap';
     if (item.type) targetField.setAttribute('type', item.type)
     if (item.forceError) targetField.classList.add('error');
     if (item.required) targetField.setAttribute('data-required', true);
-    console.log(targetField)
+    // console.log(targetField)
 
 
     targetLabel.innerHTML = item.text;
@@ -45,18 +45,24 @@ import dataMap from '../utils/dataMap';
     otherBtn.addEventListener('click', handleIdentityToggle);
   }
 
-  noButton.addEventListener('click', handleIdentityToggle)
+  noButton.addEventListener('click', handleIdentityToggle);
 
   // ERROR MESSAGE
-  const showError = () => {
+  const putErrorOnField = field => field.classList.add('error');
+  const removeErrorOnField = field => field.classList.remove('error');
+
+  const showErrorMsg = () => {
     const errMsg = element.querySelector('.error-container');
     errMsg.classList.remove('inactive');
   }
 
-  const hideError = () => {
+  const hideErrors = () => {
     const errMsg = element.querySelector('.error-container');
+    const fields = document.querySelectorAll('input');
     errMsg.classList.add('inactive');
+    fields.forEach(removeErrorOnField);
   }
+
 
   // SUBMISSION LOGIC
   
@@ -91,21 +97,24 @@ import dataMap from '../utils/dataMap';
     }).then(response => response.json())
     .then(resJson => {
       if(resJson.id) {
-        hideError();
-        formElem.innerHTML = '<p style="align-self: center;">Thank you for your feedback!</p>';
+        hideErrors();
+        const submitButton = document.querySelector('#submit-button');
+        submitButton.innerHTML = 'Thank You!';
       }
     })
   };
 
-  const checkValidity = () => {
-    const requiredFields = Array.from(document.querySelectorAll('[data-required=true]'));
-    return requiredFields.every(field => field.value)
+  const checkRequiredFields = () => {
+    return Array.from(document.querySelectorAll('[data-required=true]'))
+      .filter(field => field.value === '');
   };
 
   const onSubmit = () => {
-    const validFields = checkValidity();
-    if (!validFields) {
-      showError();
+    const requiredFields = checkRequiredFields();
+    const requiredFieldsFilled = requiredFields.length === 0;
+    if (!requiredFieldsFilled) {
+      showErrorMsg();
+      requiredFields.forEach(putErrorOnField)
       return
     }
 

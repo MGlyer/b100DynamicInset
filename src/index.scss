@@ -33,20 +33,27 @@
   border-radius: 2px;
 }
 
-input {
+input,
+textarea {
   width: 420px;
   margin-left: 10px;
   border: 1px solid rgba(33, 50, 51, 0.8);
   box-sizing: border-box;
   border-radius: 2px;
+  padding: 5px;
 }
 
 input.size-small {
   height: 40px;
 }
 
-input.size-large {
+textarea.size-large {
   height: 150px;
+}
+
+input.error,
+textarea.error {
+  border: 2px solid #D93D12;
 }
 
 .divider {

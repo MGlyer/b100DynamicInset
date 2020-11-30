@@ -11,11 +11,17 @@ import dataMap from '../utils/dataMap';
   dataMap.forEach((item) => {
     const target = document.getElementById(item.id);
     const targetLabel = document.createElement("label");
-    const targetField = document.createElement("input");
+    const targetField = item.boxSize === 'small' ? document.createElement("input") : document.createElement('textarea');
+    if (item.type) targetField.setAttribute('type', item.type)
+    if (item.forceError) targetField.classList.add('error');
+    if (item.required) targetField.setAttribute('data-required', true);
+    console.log(targetField)
+
 
     targetLabel.innerHTML = item.text;
-    targetLabel.className = 'input-label'
-    targetField.className = `size-${item.boxSize}`
+    targetLabel.classList.add('input-label');
+    targetField.classList.add(`size-${item.boxSize}`);
+    targetField.id = item.slug;
     target.appendChild(targetLabel);
     target.appendChild(targetField);
   })
@@ -26,6 +32,7 @@ import dataMap from '../utils/dataMap';
   const yesButton = element.querySelector('#yes');
   const noButton = element.querySelector('#no');
   const handleIdentityToggle = (evt) => {
+    evt.preventDefault();
     const targetBtn = evt.target.id === 'yes' ? yesButton : noButton;
     const otherBtn = evt.target.id === 'no' ? yesButton : noButton;
 
@@ -41,31 +48,19 @@ import dataMap from '../utils/dataMap';
   noButton.addEventListener('click', handleIdentityToggle)
 
   // ERROR MESSAGE
-  const errMsg = element.querySelector('.error-container');
   const showError = () => {
-    errMsg.classList.remove('inactive')
+    const errMsg = element.querySelector('.error-container');
+    errMsg.classList.remove('inactive');
   }
 
-  element.querySelector('#submit-button').addEventListener('click', showError)
-
-
-  // VALIDATION LOGIC
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+  const hideError = () => {
+    const errMsg = element.querySelector('.error-container');
+    errMsg.classList.add('inactive');
   }
 
-  const checkValidity = (field, inputVal) => {
-    if (field.required && inputVal === '') {
-      return false;
-    }
-    if (field.description.toLowerCase().includes('email') && !this.validateEmail(inputVal)) {
-      return false;
-    }
-    return true;
-  }
+  // SUBMISSION LOGIC
   
-  const sendFeedback = (evt) => {
+  const sendFeedback = () => {
     const payload = {
       "email_4E75E544-ABF9-4FDC-8A15-BE4806ADC894": "Nominator's email RESPONSE VAL",
       "name_98F5D95D-8FBE-4A79-9A9F-9A0702E07078": "Nominator's name RESPONSE VAL",
@@ -96,8 +91,27 @@ import dataMap from '../utils/dataMap';
     }).then(response => response.json())
     .then(resJson => {
       if(resJson.id) {
+        hideError();
         formElem.innerHTML = '<p style="align-self: center;">Thank you for your feedback!</p>';
       }
     })
   };
+
+  const checkValidity = () => {
+    const requiredFields = Array.from(document.querySelectorAll('[data-required=true]'));
+    return requiredFields.every(field => field.value)
+  };
+
+  const onSubmit = () => {
+    const validFields = checkValidity();
+    if (!validFields) {
+      showError();
+      return
+    }
+
+    sendFeedback()
+  };
+
+  element.querySelector('#submit-button').addEventListener('click', onSubmit)
+
 })();

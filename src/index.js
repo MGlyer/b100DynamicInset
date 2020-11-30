@@ -55,13 +55,13 @@ import dataMap from '../utils/dataMap';
     errFields.forEach(field => putErrorOnField(field.previousSibling))
   }
 
-  const showErrorMsg = () => {
-    const errMsg = element.querySelector('.error-container');
-    errMsg.classList.remove('inactive');
-  }
+  // const showErrorMsg = () => {
+  //   const errMsg = element.querySelector('.error-container');
+  //   errMsg.classList.remove('inactive');
+  // }
 
   const hideErrors = () => {
-    const errMsg = element.querySelector('.error-container');
+    // const errMsg = element.querySelector('.error-container');
     const fields = document.querySelectorAll('input');
     const labels = document.querySelectorAll('label');
     errMsg.classList.add('inactive');
@@ -143,12 +143,14 @@ import dataMap from '../utils/dataMap';
     const requiredFieldsFilled = requiredFields.length === 0;
     const validEmails = validateAllEmail();
     if (!requiredFieldsFilled || !validEmails) {
-      showErrorMsg();
+      // showErrorMsg();
       labelError(requiredFields);
       requiredFields.forEach(putErrorOnField);
       scrollToError();
       return
     }
+
+    document.querySelector('#submit-button').innerHTML = 'Processing...';
 
     sendFeedback()
   };

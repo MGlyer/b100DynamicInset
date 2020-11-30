@@ -130,22 +130,22 @@ textarea.error {
   line-height: 24px;
 }
 
-.error-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
+// .error-container {
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+// }
 
-.error-message {
-  color: #D93D12;
-  margin: auto;
-  font-size: 14px;
-  line-height: 18px;
-}
+// .error-message {
+//   color: #D93D12;
+//   margin: auto;
+//   font-size: 14px;
+//   line-height: 18px;
+// }
 
-.error-container.inactive {
-  display: none;
-}
+// .error-container.inactive {
+//   display: none;
+// }
 
 @media screen and (max-width: 640px) {
   .b100-nomination-form-b60b15be-9468-4880-a6ed-ab79ca63c1a6-container {

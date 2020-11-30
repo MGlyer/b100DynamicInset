@@ -12,7 +12,7 @@ import dataMap from '../utils/dataMap';
     const target = document.getElementById(item.id);
     const targetLabel = document.createElement("label");
     const targetField = item.boxSize === 'small' ? document.createElement("input") : document.createElement('textarea');
-    if (item.type) targetField.setAttribute('type', item.type)
+    if (item.type) targetField.setAttribute('type', item.type);
     if (item.forceError) targetField.classList.add('error');
     if (item.required) {
       targetField.setAttribute('data-required', true);
@@ -27,8 +27,7 @@ import dataMap from '../utils/dataMap';
     targetField.id = item.slug;
     target.appendChild(targetLabel);
     target.appendChild(targetField);
-  })
-
+  });
 
 
   // IDENTITY BUTTONS
@@ -70,15 +69,32 @@ import dataMap from '../utils/dataMap';
     labels.forEach(removeErrorOnField);
   }
 
+  const scrollToError = () => {
+    element.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
+  const resetErrors = () => {
+    element.querySelectorAll('.error').forEach(item => item.classList.remove('error'))
+  }
+
 
   // SUBMISSION LOGIC
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validateAllEmail = () => {
+    return Array.from(document.querySelectorAll('[type=email]')).every(emailForm => validateEmail(emailForm.value));
+  }
 
   const handleSubmitButton = () => {
     const submitButton = document.querySelector('#submit-button');
     submitButton.innerHTML = 'Thank You!';
-    setTimeout(() => {
+    document.querySelector('#text_input_136F01AF-6B86-45C9-866B-2395BECA51A5').addEventListener('change', () => {
       submitButton.innerHTML = 'Submit'
-    }, 3000)
+    })
   }
 
   const resetForm = () => {
@@ -122,12 +138,15 @@ import dataMap from '../utils/dataMap';
   };
 
   const onSubmit = () => {
+    resetErrors();
     const requiredFields = checkRequiredFields();
     const requiredFieldsFilled = requiredFields.length === 0;
-    if (!requiredFieldsFilled) {
+    const validEmails = validateAllEmail();
+    if (!requiredFieldsFilled || !validEmails) {
       showErrorMsg();
       labelError(requiredFields);
-      requiredFields.forEach(putErrorOnField)
+      requiredFields.forEach(putErrorOnField);
+      scrollToError();
       return
     }
 

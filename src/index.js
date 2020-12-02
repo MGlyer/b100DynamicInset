@@ -64,7 +64,7 @@ import dataMap from '../utils/dataMap';
     // const errMsg = element.querySelector('.error-container');
     const fields = document.querySelectorAll('input');
     const labels = document.querySelectorAll('label');
-    errMsg.classList.add('inactive');
+    // errMsg.classList.add('inactive');
     fields.forEach(removeErrorOnField);
     labels.forEach(removeErrorOnField);
   }
